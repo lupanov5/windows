@@ -17804,6 +17804,7 @@ module.exports = g;
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _slider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./slider */ "./src/js/slider.js");
 /* harmony import */ var _modules_modals__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/modals */ "./src/js/modules/modals.js");
+/* harmony import */ var _modules_modals__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_modules_modals__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _modules_tabs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/tabs */ "./src/js/modules/tabs.js");
 /* harmony import */ var _modules_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/forms */ "./src/js/modules/forms.js");
 
@@ -17813,7 +17814,7 @@ __webpack_require__.r(__webpack_exports__);
 window.addEventListener('DOMContentLoaded', function () {
   "use strict";
 
-  Object(_modules_modals__WEBPACK_IMPORTED_MODULE_1__["default"])();
+  _modules_modals__WEBPACK_IMPORTED_MODULE_1___default()();
   Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])('.glazing_slider ', '.glazing_block', '.glazing_content', 'active');
   Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])('.decoration_slider', '.no_click', '.decoration_content > div > div', 'after_click');
   Object(_modules_forms__WEBPACK_IMPORTED_MODULE_3__["default"])();
@@ -17836,10 +17837,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var core_js_modules_es_promise_finally__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.promise.finally */ "./node_modules/core-js/modules/es.promise.finally.js");
 /* harmony import */ var core_js_modules_es_promise_finally__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_promise_finally__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
-/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! regenerator-runtime/runtime */ "./node_modules/regenerator-runtime/runtime.js");
-/* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var core_js_modules_es_string_replace__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.string.replace */ "./node_modules/core-js/modules/es.string.replace.js");
+/* harmony import */ var core_js_modules_es_string_replace__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_replace__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! regenerator-runtime/runtime */ "./node_modules/regenerator-runtime/runtime.js");
+/* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_5__);
+
 
 
 
@@ -17848,7 +17852,13 @@ __webpack_require__.r(__webpack_exports__);
 
 var forms = function forms() {
   var form = document.querySelectorAll('form'),
-      inputs = document.querySelectorAll('input');
+      inputs = document.querySelectorAll('input'),
+      phoneInputs = document.querySelectorAll('input[name="user_phone"]');
+  phoneInputs.forEach(function (item) {
+    item.addEventListener('input', function () {
+      item.value = item.value.replace(/\D/, "");
+    });
+  });
   var message = {
     loading: 'Загрузка...',
     success: 'Спасибо! Скоро мы с вами свяжемся!',
@@ -17920,55 +17930,10 @@ var forms = function forms() {
 /*!**********************************!*\
   !*** ./src/js/modules/modals.js ***!
   \**********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
-/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__);
-
-
-var modals = function modals() {
-  function bindModal(triggerSelector, modalSelector, closeSelector) {
-    var trigger = document.querySelectorAll(triggerSelector),
-        modal = document.querySelector(modalSelector),
-        close = document.querySelector(closeSelector);
-    trigger.forEach(function (item) {
-      item.addEventListener('click', function (e) {
-        if (e.target) {
-          e.preventDefault();
-        }
-
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-      });
-    });
-    close.addEventListener('click', function () {
-      modal.style.display = 'none';
-      document.body.style.overflow = '';
-    });
-    modal.addEventListener('click', function (e) {
-      if (e.target === modal) {
-        modal.style.display = 'none';
-        document.body.style.overflow = '';
-      }
-    });
-  }
-
-  function showModalByTime(selector, time) {
-    setTimeout(function () {
-      document.querySelector(selector).style.display = 'block';
-      document.body.style.overflow = 'hidden';
-    }, time);
-  }
-
-  bindModal('.popup_engineer_btn', '.popup_engineer', '.popup_engineer .popup_close');
-  bindModal('.phone_link', '.popup', '.popup .popup_close');
-  /* showModalByTime('.popup', 60000); */
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (modals);
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\Users\\Dima\\Documents\\Web Проекты\\Windows\\src\\js\\modules\\modals.js: Unexpected token, expected \";\" (41:36)\n\n\u001b[0m \u001b[90m 39 | \u001b[39m    bindModal(\u001b[32m'.phone_link'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'.popup'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'.popup .popup_close'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 40 | \u001b[39m    bindModal(\u001b[32m'.popup_calc_btn'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'.popup_calc'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'.popup_calc_close'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 41 | \u001b[39m    showModalByTime(\u001b[32m'.popup'\u001b[39m\u001b[33m,\u001b[39m \u001b[35m60000\u001b[39m)\u001b[33m:\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m                                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 42 | \u001b[39m}\u001b[0m\n\u001b[0m \u001b[90m 43 | \u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 44 | \u001b[39m\u001b[36mexport\u001b[39m \u001b[36mdefault\u001b[39m modals\u001b[33m;\u001b[39m\u001b[0m\n    at Parser.raise (C:\\Users\\Dima\\Documents\\Web Проекты\\Windows\\node_modules\\@babel\\parser\\lib\\index.js:6975:17)\n    at Parser.unexpected (C:\\Users\\Dima\\Documents\\Web Проекты\\Windows\\node_modules\\@babel\\parser\\lib\\index.js:8368:16)\n    at Parser.semicolon (C:\\Users\\Dima\\Documents\\Web Проекты\\Windows\\node_modules\\@babel\\parser\\lib\\index.js:8350:40)\n    at Parser.parseExpressionStatement (C:\\Users\\Dima\\Documents\\Web Проекты\\Windows\\node_modules\\@babel\\parser\\lib\\index.js:11191:10)\n    at Parser.parseStatementContent (C:\\Users\\Dima\\Documents\\Web Проекты\\Windows\\node_modules\\@babel\\parser\\lib\\index.js:10790:19)\n    at Parser.parseStatement (C:\\Users\\Dima\\Documents\\Web Проекты\\Windows\\node_modules\\@babel\\parser\\lib\\index.js:10656:17)\n    at Parser.parseBlockOrModuleBlockBody (C:\\Users\\Dima\\Documents\\Web Проекты\\Windows\\node_modules\\@babel\\parser\\lib\\index.js:11232:25)\n    at Parser.parseBlockBody (C:\\Users\\Dima\\Documents\\Web Проекты\\Windows\\node_modules\\@babel\\parser\\lib\\index.js:11219:10)\n    at Parser.parseBlock (C:\\Users\\Dima\\Documents\\Web Проекты\\Windows\\node_modules\\@babel\\parser\\lib\\index.js:11203:10)\n    at Parser.parseFunctionBody (C:\\Users\\Dima\\Documents\\Web Проекты\\Windows\\node_modules\\@babel\\parser\\lib\\index.js:10222:24)");
 
 /***/ }),
 
